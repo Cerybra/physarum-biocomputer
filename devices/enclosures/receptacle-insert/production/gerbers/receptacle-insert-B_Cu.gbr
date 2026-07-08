@@ -1,0 +1,30 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,9.0.0*%
+%TF.CreationDate,2025-03-03T23:12:30-05:00*%
+%TF.ProjectId,neurophy-receptacle-insert,6e657572-6f70-4687-992d-726563657074,1*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Copper,L2,Bot*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.0) date 2025-03-03 23:12:30*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,SMDPad,CuDef*%
+%ADD10C,4.000000*%
+%TD*%
+%TA.AperFunction,ViaPad*%
+%ADD11C,0.600000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+%TO.P,TP1,1,1*%
+%TO.N,Net-(J1-In)*%
+X172500000Y-99000000D03*
+%TD*%
+D11*
+%TO.N,Net-(J1-In)*%
+X172500000Y-99000000D03*
+%TD*%
+M02*

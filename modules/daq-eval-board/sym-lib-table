@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "DAQ_Analog")(type "KiCad")(uri "${KIPRJMOD}/lib/DAQ_Analog.kicad_sym")(options "")(descr ""))
+  (lib (name "DAQ_Power")(type "KiCad")(uri "${KIPRJMOD}/lib/DAQ_Power.kicad_sym")(options "")(descr ""))
+  (lib (name "DAQ_Connector")(type "KiCad")(uri "${KIPRJMOD}/lib/DAQ_Connector.kicad_sym")(options "")(descr ""))
+)
