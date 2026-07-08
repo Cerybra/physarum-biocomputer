@@ -1,0 +1,6 @@
+Comment,Designator,Footprint,LCSC Part #
+100nF Unpolarized capacitor,"C1,C2",C_0402_1005Metric,
+TestPoint test point,"TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8,TP9,TP10,TP11,TP12,TP13,TP14,TP15,TP16",KEYSTONE_5002,
+TestPoint test point,TP18,KEYSTONE_5000,
+TestPoint test point,TP19,KEYSTONE_5006,
+MAX14662ETI+T 8xSPST Switch,U1,TQFN-28-EP1_4.00x4.00mm_P5.0mm,
