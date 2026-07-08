@@ -1,0 +1,27 @@
+[package]
+name = "stm32h723-nucleo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cortex-m = "0.7.4"
+cortex-m-rt = "0.7.1"
+cortex-m-semihosting = "0.5.0"
+
+libm = "0.2.8"
+
+embedded-hal = "0.2.7"
+embedded-hal-bus = "0.1.0"
+
+panic-halt = "0.2.0"
+
+stm32h7xx-hal = { version = "0.15.1", features = ["stm32h735", "rt"] }
+
+[build-dependencies]
+cc = "1.0.90"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
