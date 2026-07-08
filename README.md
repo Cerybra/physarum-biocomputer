@@ -4,6 +4,6 @@
 
 <hr/>
 
-![](./assets/neurophy-render-1.png)
+![](./assets/biocomputer-render-1.png)
 
 <hr/>
