@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "NeuroPhy_Memristor")(type "KiCad")(uri "${KIPRJMOD}/lib/footprints/NeuroPhy_Memristor.pretty")(options "")(descr ""))
+)

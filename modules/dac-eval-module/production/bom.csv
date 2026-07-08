@@ -1,0 +1,9 @@
+Comment,Designator,Footprint,LCSC Part #
+1uF Unpolarized capacitor,"C101,C104,C106",C_0402_1005Metric,
+100nF Unpolarized capacitor,"C102,C103,C105,C107,C108,C109",C_0402_1005Metric,
+LED Light emitting diode,D101,LED_0603_1608Metric,
+"Conn_Coaxial coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)","J101,J102,J103,J104",CONN_RF2-04A-T-00-50-G_ADM,
+"1k Resistor, US symbol",R101,R_0603_1608Metric,
+TestPoint test point,"TP101,TP104,TP105",KEYSTONE_5000,
+TestPoint test point,TP102,KEYSTONE_5001,
+LTC2666IUH-16#PBF Octal 16-Bit/12-Bit ±10V VOUT SoftSpan DACs with 10ppm/°C Max Reference,U101,QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm,

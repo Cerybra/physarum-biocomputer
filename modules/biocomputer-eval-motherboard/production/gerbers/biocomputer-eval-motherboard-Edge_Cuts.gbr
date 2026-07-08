@@ -1,0 +1,23 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,7.0.10*%
+%TF.CreationDate,2024-05-08T16:25:20-04:00*%
+%TF.ProjectId,neurophy-eval-motherboard,6e657572-6f70-4687-992d-6576616c2d6d,1*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Profile,NP*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 7.0.10) date 2024-05-08 16:25:20*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,Profile*%
+%ADD10C,0.100000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+X92750000Y-99250000D02*
+X492750000Y-99250000D01*
+X492750000Y-299250000D01*
+X92750000Y-299250000D01*
+X92750000Y-99250000D01*
+M02*
