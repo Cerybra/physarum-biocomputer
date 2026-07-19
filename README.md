@@ -24,6 +24,8 @@ The project structure is organized as follows:
 
 - 📂 `software`: contains all of the software used in performing experiments.
 
+- 📂 `simulations`: contains all of the code used in performing equivalent circuit simulations.
+
 #### Structure
 📂 `repository` 
 
@@ -53,3 +55,4 @@ The project structure is organized as follows:
 - 📂 `devices`
     - 📂 `enclosures`
     - 📂 `pluggable`
+- 📂 `simulations`
