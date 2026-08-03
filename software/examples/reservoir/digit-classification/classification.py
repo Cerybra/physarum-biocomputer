@@ -2,6 +2,8 @@ import numpy as np
 
 import matplotlib
 
+import reservoirpy as rpy
+
 from sklearn.linear_model import LogisticRegression
 
 # from sklearn.svm import SVC
@@ -12,10 +14,35 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 
+def _simulate_reservoir(images: np.ndarray, nodes: int = 32, **kwargs) -> np.ndarray:
+    states = []
+
+    # Initializing a reservoir with standard parameters.
+    reservoir = rpy.nodes.Reservoir(
+        nodes,
+        lr=kwargs.get('lr', 0.5),
+        sr=kwargs.get('sr', 0.9),
+        **kwargs
+    )
+
+    for image in images:
+        states.append(
+            reservoir.run(
+                (image.T > 0.5).astype(np.float32)
+            )[-1, :]
+        )
+
+        _ = reservoir.reset()
+
+    return np.vstack(states)
+
+
 SOURCE_FILE = 'digits-responses-1.npz'
 
 if __name__ == '__main__':
     matplotlib.use('TkAgg')
+
+    rpy.set_seed(42)
 
     data = np.load(SOURCE_FILE)
 
@@ -24,6 +51,9 @@ if __name__ == '__main__':
 
     # The last column from the actual image.
     x_data_baseline = data['data'][:, 7]
+
+    # The states collected from the simulated digital reservoir.
+    x_data_digital = _simulate_reservoir(images=data['data'])
 
     y_data = data['label']
 
@@ -35,8 +65,14 @@ if __name__ == '__main__':
         x_data_baseline, y_data, train_size=0.8, random_state=42, shuffle=True
     )
 
+    digital_splits = train_test_split(
+        x_data_digital, y_data, train_size=0.8, random_state=42, shuffle=True
+    )
+
     for splits, experiment in [
-        (baseline_splits, 'baseline'), (reservoir_splits, 'reservoir')
+        (baseline_splits, 'baseline'),
+        (reservoir_splits, 'reservoir'),
+        (digital_splits, 'digital')
     ]:
         x_train, x_test, y_train, y_test = splits
 
@@ -62,4 +98,4 @@ if __name__ == '__main__':
         pipeline.fit(x_train, y_train)
         test_score = pipeline.score(x_test, y_test)
 
-        print(f'Test Accuracy ({experiment.capitalize()})y: {test_score: .4f}')
+        print(f'Test Accuracy ({experiment.capitalize()}): {test_score: .4f}')
