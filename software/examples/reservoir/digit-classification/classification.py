@@ -62,4 +62,4 @@ if __name__ == '__main__':
         pipeline.fit(x_train, y_train)
         test_score = pipeline.score(x_test, y_test)
 
-        print(f'Test Accurac ({experiment.capitalize()})y: {test_score: .4f}')
+        print(f'Test Accuracy ({experiment.capitalize()})y: {test_score: .4f}')
