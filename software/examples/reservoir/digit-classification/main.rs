@@ -119,11 +119,11 @@ fn receive_array<Rx: ReadSerial<u8>, Tx: WriteSerial<u8>, const N: usize, const 
 }
 
 fn send_array<Tx: WriteSerial<u8>>(tx: &mut Tx, array: &[[f32; 8]; 8]) -> Result<(), ()> {
-    // Prepare header
+    // Prepare the header.
     let rows = 8u32.to_le_bytes();
     let cols = 8u32.to_le_bytes();
 
-    // Prepare payload: marker (4) + header (8) + data (8*8*4) = 4 + 8 + 256 = 268 bytes
+    // Prepare payload: marker (4) + header (8) + data (8*8*4) = 4 + 8 + 256 = 268 bytes.
     let mut payload = [0u8; 268];
 
     payload[..4].copy_from_slice(&STRT);
@@ -138,10 +138,10 @@ fn send_array<Tx: WriteSerial<u8>>(tx: &mut Tx, array: &[[f32; 8]; 8]) -> Result
         }
     }
 
-    // Compute checksum over payload
+    // Compute checksum over payload.
     let checksum = checksum_bytes(&payload).to_le_bytes();
 
-    // Final message: payload (268) + checksum (4) = 272 bytes
+    // Final message: payload (268) + checksum (4) = 272 bytes.
     let mut message = [0u8; 272];
 
     message[..268].copy_from_slice(&payload);
@@ -261,7 +261,7 @@ fn main() -> ! {
     let mut signal_buf = [0u8; 4];
 
     loop {
-        // Request new image from host
+        // Request new image from host.
         write_all(&mut tx, &RQST);
 
         // Wait for either FNSH or STRT marker.
