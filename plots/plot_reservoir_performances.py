@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 
-def _run_experiment(
+def run_experiment(
         recordings: np.ndarray,
         model: callable,
         **kwargs
@@ -40,19 +40,6 @@ def _run_experiment(
         mean_squared_error(y_true=y_test, y_pred=y_pred_baseline),
         mean_squared_error(y_true=y_test, y_pred=y_pred_readout)
     )
-
-
-def apply_style(ax: plt.Axes) -> None:
-    ax.set_facecolor('white')
-
-    ax.spines[['top', 'right', 'bottom']].set_visible(False)
-    ax.spines['left'].set_linewidth(1.0)
-    ax.spines['left'].set_color('black')
-
-    ax.tick_params(colors='black', labelsize=5, which='both')
-
-    ax.xaxis.get_offset_text().set_fontsize(6)
-    ax.yaxis.get_offset_text().set_fontsize(6)
 
 
 def plot_dumbbell_improvement(
@@ -226,7 +213,7 @@ if __name__ == '__main__':
             reservoir_1_reservoir_recordings,
             reservoir_2_reservoir_recordings
     ):
-        baseline_performance, readout_performance = _run_experiment(
+        baseline_performance, readout_performance = run_experiment(
             reservoir_recordings, LinearRegression
         )
 

@@ -22,7 +22,7 @@ from sklearn.metrics import accuracy_score
 from typing import Any, Optional
 
 
-def _load_temporal_xor_recordings(file_path: str) -> np.ndarray:
+def load_temporal_xor_recordings(file_path: str) -> np.ndarray:
     data = []
     with open(file_path, 'r') as file:
         reader = csv.reader(file, delimiter=',')
@@ -445,7 +445,7 @@ def apply_publication_style(
     ax.spines['left'].set_color('black')
 
 
-def _plot_average_ode_prediction(
+def plot_average_ode_prediction(
         ax: plt.Axes,
         palette: dict[str, str],
         directories: list[str] = None
@@ -465,7 +465,7 @@ def _plot_average_ode_prediction(
     ax.legend(fontsize=6, frameon=False)
 
 
-def _plot_average_ode_prediction_series(
+def plot_average_ode_prediction_series(
         ax: plt.Axes,
         palette: dict[str, str],
         directories: list[str] = None
@@ -505,7 +505,7 @@ if __name__ == '__main__':
 
     plotter = Figure6(figure=fig)
 
-    temporal_xor_data = _load_temporal_xor_recordings('./data/temporal-xor-recordings.csv')
+    temporal_xor_data = load_temporal_xor_recordings('./data/temporal-xor-recordings.csv')
     van_der_pol_data = np.load('./data/reservoir-2/recordings-1773464097.530412-2.npz')['recordings']
 
     x_data, y_data = np.hstack(
@@ -531,11 +531,11 @@ if __name__ == '__main__':
     print(f'Temporal XOR performance without reservoir: {temporal_xor_baseline_score}')
     print(f'Temporal XOR performance with reservoir: {temporal_xor_reservoir_score}')
 
-    _plot_average_ode_prediction(
+    plot_average_ode_prediction(
         plotter.ax_a, palette
     )
 
-    _plot_average_ode_prediction_series(
+    plot_average_ode_prediction_series(
         plotter.ax_b, palette
     )
 
