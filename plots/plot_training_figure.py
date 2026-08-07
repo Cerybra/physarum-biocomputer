@@ -460,18 +460,18 @@ if __name__ == '__main__':
     plotter = Figure5(
         figure=fig,
         weight_matching_files=[
-            './experiment-2/regression-with-grad-target-0.43.csv',
-            './experiment-2/regression-with-grad-target-0.72.csv',
-            './matching/regression-without-grad.csv',
+            './data/device-regression-recordings/experiment-2/regression-with-grad-target-0.43.csv',
+            './data/device-regression-recordings/experiment-2/regression-with-grad-target-0.72.csv',
+            './data/device-regression-recordings/experiment-2/regression-without-grad.csv',
         ],
         weight_matching_targets=[0.43, 0.72, 0.43, 0.72],
         regression_weight_conductance_files=[
-            './experiment-1/regression-with-grad-target-0.44.csv',
-            './experiment-1/regression-with-grad-target-0.44.csv',
+            './data/device-regression-recordings/experiment-1/regression-with-grad-target-0.44.csv',
+            './data/device-regression-recordings/experiment-1/regression-with-grad-target-0.44.csv',
         ],
         regression_files=[
-            './experiment-1/regression-with-grad-target-0.44.csv',
-            './experiment-1/regression-without-grad-target-0.44.csv
+            './data/device-regression-recordings/experiment-1/regression-with-grad-target-0.44.csv',
+            './data/device-regression-recordings/experiment-1/regression-without-grad-target-0.44.csv',
         ],
         regression_line_slopes=[0.43, 0.43]
     )
@@ -480,4 +480,4 @@ if __name__ == '__main__':
     fig.set_layout_engine('constrained')
     fig.set_constrained_layout_pads(w_pad=0.01, h_pad=0.01)
 
-    plt.savefig('training-figure.pdf', dpi=600)
+    plt.savefig('figure-5.pdf', dpi=600)

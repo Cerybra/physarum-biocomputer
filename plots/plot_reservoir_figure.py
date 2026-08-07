@@ -374,16 +374,6 @@ class Figure6:
             ha='right'
         )
 
-    def plot(self) -> None:
-        self.plot_temporal_xor(
-            steps=range(50),
-            series=self.reservoir_recordings_data[0][:, 0][:50],
-            figure=self.figure,
-            ax=self.ax_a,
-            label='(b)',
-            palette=self.palette
-        )
-
 
 def load_and_evaluate_ensemble(
         directories: list[str],
@@ -398,12 +388,11 @@ def load_and_evaluate_ensemble(
 
     file_paths = []
     for directory in directories:
-        file_paths.extend([os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.npz')])
+        file_paths.extend([
+            os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.npz')
+        ])
 
     raw_recordings = [np.load(f)['recordings'] for f in file_paths]
-
-    if not raw_recordings:
-        raise ValueError("No valid .npz files found.")
 
     global_mask = np.ones(raw_recordings[0].shape[0], dtype=bool)
     for rec in raw_recordings:
@@ -451,16 +440,44 @@ def plot_average_ode_prediction(
         directories: list[str] = None
 ) -> None:
     if directories is None:
-        directories = ['./data/reservoir-1', './data/reservoir-2']
+        directories = [
+            './data/reservoir-computing-recordings/reservoir-1',
+            './data/reservoir-computing-recordings/reservoir-2'
+        ]
 
     apply_publication_style(ax, xlabel='Base Feature X', ylabel='Predicted Y')
 
-    base_features, target, y_baseline, res_preds = load_and_evaluate_ensemble(directories)
-    x_coords = base_features[:, 0]
+    base_features, target, y_baseline, reservoir_predictions = load_and_evaluate_ensemble(directories)
+    x_coordinates = base_features[:, 0]
 
-    ax.plot(x_coords, target, color='black', alpha=0.45, lw=5.0, label='Target', zorder=5)
-    ax.plot(x_coords, y_baseline, color=palette['deep'], alpha=1.0, lw=1.5, ls='--', label='Baseline', zorder=4)
-    ax.plot(x_coords, np.mean(res_preds, axis=0), color=palette['main'], lw=1.5, ls='-', label='Reservoir Average', zorder=6)
+    ax.plot(
+        x_coordinates,
+        target,
+        color='black',
+        alpha=0.45,
+        lw=5.0,
+        label='Target',
+        zorder=5
+    )
+    ax.plot(
+        x_coordinates,
+        y_baseline,
+        color=palette['deep'],
+        alpha=1.0,
+        lw=1.5,
+        ls='--',
+        label='Baseline',
+        zorder=4
+    )
+    ax.plot(
+        x_coordinates,
+        np.mean(reservoir_predictions, axis=0),
+        color=palette['main'],
+        lw=1.5,
+        ls='-',
+        label='Reservoir Average',
+        zorder=6
+    )
 
     ax.legend(fontsize=6, frameon=False)
 
@@ -471,18 +488,47 @@ def plot_average_ode_prediction_series(
         directories: list[str] = None
 ) -> None:
     if directories is None:
-        directories = ['./data/reservoir-1', './data/reservoir-2']
+        directories = [
+            './data/reservoir-computing-recordings/reservoir-1',
+            './data/reservoir-computing-recordings/reservoir-2'
+        ]
 
     apply_publication_style(ax, xlabel='Time Steps', ylabel='Predicted Y')
 
     _, target, y_baseline, reservoir_predictions = load_and_evaluate_ensemble(directories)
 
-    for i, pred in enumerate(reservoir_predictions):
-        ax.plot(pred, color=palette['error'], alpha=0.1, lw=2.5, label='Individual Reservoirs' if i == 0 else None)
+    for i, predictions in enumerate(reservoir_predictions):
+        ax.plot(
+            predictions,
+            color=palette['error'],
+            alpha=0.1,
+            lw=2.5,
+            label='Individual Reservoirs' if i == 0 else None
+        )
 
-    ax.plot(target, color='black', lw=1.5, label='Target', zorder=5)
-    ax.plot(y_baseline, color=palette['deep'], lw=2.5, ls='-', label='Linear Baseline', zorder=4)
-    ax.plot(np.mean(reservoir_predictions, axis=0), color=palette['main'], lw=1.5, ls='-', label='Reservoir Average', zorder=6)
+    ax.plot(
+        target,
+        color='black',
+        lw=1.5,
+        label='Target',
+        zorder=5
+    )
+    ax.plot(
+        y_baseline,
+        color=palette['deep'],
+        lw=2.5,
+        ls='-',
+        label='Linear Baseline',
+        zorder=4
+    )
+    ax.plot(
+        np.mean(reservoir_predictions, axis=0),
+        color=palette['main'],
+        lw=1.5,
+        ls='-',
+        label='Reservoir Average',
+        zorder=6
+    )
 
     ax.legend(fontsize=6, frameon=False)
 
@@ -505,8 +551,12 @@ if __name__ == '__main__':
 
     plotter = Figure6(figure=fig)
 
-    temporal_xor_data = load_temporal_xor_recordings('./data/temporal-xor-recordings.csv')
-    van_der_pol_data = np.load('./data/reservoir-2/recordings-1773464097.530412-2.npz')['recordings']
+    temporal_xor_data = load_temporal_xor_recordings(
+        './data/reservoir-computing-recordings/temporal-xor-recordings.csv'
+    )
+    van_der_pol_data = np.load(
+        './data/reservoir-computing-recordings/reservoir-2/recordings-1773464097.530412-2.npz'
+    )['recordings']
 
     x_data, y_data = np.hstack(
         [temporal_xor_data[:, 0].reshape(-1, 1), temporal_xor_data[:, 2:]]
@@ -571,4 +621,4 @@ if __name__ == '__main__':
     fig.set_layout_engine('constrained')
     fig.set_constrained_layout_pads(w_pad=0.01, h_pad=0.01)
 
-    plt.savefig('reservoir-experiments-figure.pdf', dpi=600)
+    plt.savefig('figure-6.pdf', dpi=600)
