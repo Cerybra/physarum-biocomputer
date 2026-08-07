@@ -26,6 +26,8 @@ The project structure is organized as follows:
 
 - 📂 `simulations`: contains all of the code used in performing equivalent circuit simulations.
 
+- 📂 `plots`: contains all of the code used in producing the main figures.
+
 #### Structure
 📂 `repository` 
 
@@ -56,3 +58,8 @@ The project structure is organized as follows:
     - 📂 `enclosures`
     - 📂 `pluggable`
 - 📂 `simulations`
+- 📂 `plots`
+
+## Reproducibility
+
+To reproduce all of the main figures, either clone the repository or download the `data` directory. Then, run each of the scripts within the `plots/main` directory.
